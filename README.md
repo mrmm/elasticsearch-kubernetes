@@ -1,18 +1,21 @@
-# Elasticsearch Pet
+# Elasticsearch Kubernetes
 
 This is an Elasticsearch docker image meant to be used with PetSets.
 
 This image is using Fabric8's great work around the [kubernetes plugin](https://github.com/fabric8io/elasticsearch-cloud-kubernetes) for elasticsearch and their [image](https://hub.docker.com/r/fabric8/elasticsearch-k8s/) as parent.
 
+## Docker base image
+- This image is based on the [this](https://github.com/mrmm/docker-jre) JRE image.
+
 ## Env variables
-1. __CLUSTER_NAME__ : Elasticsearch Cluster name _(default : KUBERNETES_NAMESPACE)_
-2. __NODE_TYPE__ : Define the node type _(default : MASTER_CLIENT_DATA)_
-⋅⋅* __MASTER__ : Node type will be set as Master
-⋅⋅* __CLIENT__ : Node type will be set as Client
-⋅⋅* __DATA__ : Node type will be set as Data
- __MASTER_CLIENT_DATA__ : Node type will be set as Master, Client and Data
-3. __DISCOVERY_SERVICE__ : Set the discovery service name for Kubernetes Plugin _(default : elasticsearch-discovery)_
-4. __KUBERNETES_NAMESPACE__ : Kubernetes namespace of the Pod _(default : default)_
+- __CLUSTER_NAME__ : Elasticsearch Cluster name _(default : KUBERNETES_NAMESPACE)_
+- __NODE_TYPE__ : Define the node type _(default : MASTER_CLIENT_DATA)_
+ * __MASTER__ : Node type will be set as Master
+ * __CLIENT__ : Node type will be set as Client
+ * __DATA__ : Node type will be set as Data
+ * __MASTER_CLIENT_DATA__ : Node type will be set as Master, Client and Data
+- __DISCOVERY_SERVICE__ : Set the discovery service name for Kubernetes Plugin _(default : elasticsearch-discovery)_
+- __KUBERNETES_NAMESPACE__ : Kubernetes namespace of the Pod _(default : default)_
 
 ## Immutable Elasticsearch Configs
 - __ES_HEAP_SIZE__ : 512Mi
@@ -28,3 +31,25 @@ This image is using Fabric8's great work around the [kubernetes plugin](https://
 
 ## Changes for PetSet
 - Handle downscales so that no data loss occurs (using lifecycle hooks) thanks to the work of @simonswine at @jetstack [elasticsearch-pet](https://github.com/jetstack/elasticsearch-pet)
+
+### Example of usage with Pod lifecycle
+```yaml
+apiVersion: apps/v1alpha1
+kind: PetSet
+metadata:
+  name: "es-data"
+  labels:
+    type: data
+spec:
+...
+    spec:
+      serviceAccountName: "elasticsearch"
+      containers:
+      - name: elasticsearch
+...
+        lifecycle:
+          preStop:
+            exec:
+              command: ["/bin/bash","/pre-stop-hook.sh"]
+...
+```
