@@ -7,10 +7,10 @@ This image is using Fabric8's great work around the [kubernetes plugin](https://
 ## Env variables
 - __CLUSTER_NAME__ : Elasticsearch Cluster name _(default : KUBERNETES_NAMESPACE)_
 - __NODE_TYPE__ : Define the node type _(default : MASTER_CLIENT_DATA)_
-⋅⋅* __MASTER__ : Node type will be set as Master
-⋅⋅* __CLIENT__ : Node type will be set as Client
-⋅⋅* __DATA__ : Node type will be set as Data
-⋅⋅* __MASTER_CLIENT_DATA__ : Node type will be set as Master, Client and Data
+⋅⋅ __MASTER__ : Node type will be set as Master
+⋅⋅ __CLIENT__ : Node type will be set as Client
+⋅⋅ __DATA__ : Node type will be set as Data
+⋅⋅ __MASTER_CLIENT_DATA__ : Node type will be set as Master, Client and Data
 - __DISCOVERY_SERVICE__ : Set the discovery service name for Kubernetes Plugin _(default : elasticsearch-discovery)_
 - __KUBERNETES_NAMESPACE__ : Kubernetes namespace of the Pod _(default : default)_
 
