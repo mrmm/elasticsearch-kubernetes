@@ -14,6 +14,10 @@ network:
 bootstrap:
   memory_lock: ${BOOTSTRAP_MLOCKALL}
 
+path:
+  data: /data
+  logs: /log
+
 http:
   enabled: ${HTTP_ENABLE}
   compression: true
