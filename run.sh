@@ -53,6 +53,10 @@ fi
 KUBERNETES_NAMESPACE=${KUBERNETES_NAMESPACE:-default}
 CLUSTER_NAME=${CLUSTER_NAME:-$KUBERNETES_NAMESPACE}
 
+# Setting up ES Path configuration
+DATA_PATH=${DATA_PATH:-/data}
+LOGS_PATH=${LOGS_PATH:-/logs}
+
 # running ES
 echo "[$TIME] Running ES"
 chmod +x /elasticsearch/bin/elasticsearch

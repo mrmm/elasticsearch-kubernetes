@@ -15,8 +15,8 @@ bootstrap:
   memory_lock: ${BOOTSTRAP_MLOCKALL}
 
 path:
-  data: /data
-  logs: /log
+  data: ${DATA_PATH}
+  logs: ${LOGS_PATH}
 
 http:
   enabled: ${HTTP_ENABLE}

@@ -39,6 +39,10 @@ ENV NUMBER_OF_REPLICAS 0
 # Defining the ES Discovery service
 ENV DISCOVERY_SERVICE elasticsearch-discovery
 
+# Storage path configuration
+ENV DATA_PATH /data
+ENV LOGS_PATH /logs
+
 # Copy run script
 COPY run.sh /
 
