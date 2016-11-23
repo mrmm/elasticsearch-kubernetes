@@ -48,4 +48,4 @@ COPY run.sh /
 
 RUN chmod +x /run.sh
 
-CMD ["sudo", "/run.sh"]
+CMD ["/run.sh"]
