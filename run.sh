@@ -4,7 +4,7 @@
 TIME=$(date)
 # Directory containg ES files
 ES_DIR="/elasticsearch"
-
+env
 # provision elasticsearch user
 echo "[$TIME] Creating group sudo"
 addgroup sudo
@@ -62,7 +62,7 @@ echo "[$TIME] This node is deployed is part of Cluster $CLUSTER_NAME"
 export DATA_PATH=${DATA_PATH:-/data}
 export LOGS_PATH=${LOGS_PATH:-/logs}
 
-env
+
 # running ES
 echo "[$TIME] Running ES"
 chmod +x /elasticsearch/bin/elasticsearch
