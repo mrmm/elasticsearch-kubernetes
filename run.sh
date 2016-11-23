@@ -24,15 +24,17 @@ ulimit -l unlimited
 # Fetching the node type (If Master)
 if [[ $NODE_TYPE == *"MASTER"* ]]
 then
+  echo "[$TIME] $HOSTNAME is a ES Master node"
   export NODE_MASTER=true
   export HTTP_ENABLE=false
 else
   export NODE_MASTER=false
-
+  export HTTP_ENABLE=false
 fi
 # Fetching the node type (If Data)
 if [[ $NODE_TYPE == *"DATA"* ]]
 then
+  echo "[$TIME] $HOSTNAME is a ES Data node"
   export NODE_DATA=true
   export HTTP_ENABLE=false
 else
@@ -42,6 +44,7 @@ fi
 # Fetching the node type (If Client)
 if [[ $NODE_TYPE == *"CLIENT"* ]]
 then
+  echo "[$TIME] $HOSTNAME is a ES Client node"
   export NODE_CLIENT=true
   export HTTP_ENABLE=true
 else
@@ -50,12 +53,14 @@ else
 fi
 
 # Updating clustername and namespaces
-KUBERNETES_NAMESPACE=${KUBERNETES_NAMESPACE:-default}
-CLUSTER_NAME=${CLUSTER_NAME:-$KUBERNETES_NAMESPACE}
+export KUBERNETES_NAMESPACE=${KUBERNETES_NAMESPACE:-default}
+export CLUSTER_NAME=${CLUSTER_NAME:-$KUBERNETES_NAMESPACE}
+echo "[$TIME] This node is deployed in Namespace $KUBERNETES_NAMESPACE"
+echo "[$TIME] This node is deployed is part of Cluster $CLUSTER_NAME"
 
 # Setting up ES Path configuration
-DATA_PATH=${DATA_PATH:-/data}
-LOGS_PATH=${LOGS_PATH:-/logs}
+export DATA_PATH=${DATA_PATH:-/data}
+export LOGS_PATH=${LOGS_PATH:-/logs}
 
 # running ES
 echo "[$TIME] Running ES"
