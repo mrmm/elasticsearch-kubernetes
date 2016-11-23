@@ -62,7 +62,8 @@ echo "[$TIME] This node is deployed is part of Cluster $CLUSTER_NAME"
 export DATA_PATH=${DATA_PATH:-/data}
 export LOGS_PATH=${LOGS_PATH:-/logs}
 
+env
 # running ES
 echo "[$TIME] Running ES"
 chmod +x /elasticsearch/bin/elasticsearch
-sudo -u -E elasticsearch /elasticsearch/bin/elasticsearch
+sudo -E -u elasticsearch /elasticsearch/bin/elasticsearch
