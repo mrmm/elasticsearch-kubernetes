@@ -14,10 +14,11 @@ echo "[$TIME] Adding Elasticsearch to sudo users"
 adduser elasticsearch sudo
 echo "[$TIME] Changing ownership of [$ES_DIR] to elasticsearch user"
 chown -R elasticsearch $ES_DIR
-echo "[$TIME] Enabling sudo withou password"
+echo "[$TIME] Enabling sudo without password"
 echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # allow for memlock
+echo "[$TIME] Enabling memlock"
 ulimit -l unlimited
 
 # Fetching the node type (If Master)
@@ -27,6 +28,15 @@ then
   export HTTP_ENABLE=false
 else
   export NODE_MASTER=false
+
+fi
+# Fetching the node type (If Data)
+if [[ $NODE_TYPE == *"DATA"* ]]
+then
+  export NODE_DATA=true
+  export HTTP_ENABLE=false
+else
+  export NODE_DATA=false
   export HTTP_ENABLE=false
 fi
 # Fetching the node type (If Client)
@@ -38,17 +48,12 @@ else
   export NODE_CLIENT=false
   export HTTP_ENABLE=false
 fi
-# Fetching the node type (If Data)
-if [[ $NODE_TYPE == *"DATA"* ]]
-then
-  export NODE_DATA=true
-  export HTTP_ENABLE=false
-else
-  export NODE_DATA=false
-  export HTTP_ENABLE=false
-fi
 
-# run
+# Updating clustername and namespaces
+KUBERNETES_NAMESPACE=${KUBERNETES_NAMESPACE:-default}
+CLUSTER_NAME=${CLUSTER_NAME:-$KUBERNETES_NAMESPACE}
+
+# running ES
 echo "[$TIME] Running ES"
 chmod +x /elasticsearch/bin/elasticsearch
 sudo -u elasticsearch /elasticsearch/bin/elasticsearch
