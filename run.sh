@@ -65,4 +65,4 @@ export LOGS_PATH=${LOGS_PATH:-/logs}
 # running ES
 echo "[$TIME] Running ES"
 chmod +x /elasticsearch/bin/elasticsearch
-sudo -u elasticsearch /elasticsearch/bin/elasticsearch
+sudo -u -E elasticsearch /elasticsearch/bin/elasticsearch
