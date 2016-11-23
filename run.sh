@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Script Path
 TIME=$(date)
@@ -22,7 +22,7 @@ echo "[$TIME] Enabling memlock"
 ulimit -l unlimited
 
 # Fetching the node type (If Master)
-if [[ $NODE_TYPE == *"MASTER"* ]]
+if [[ $NODE_TYPE == "MASTER" ]]
 then
   echo "[$TIME] $HOSTNAME is a ES Master node"
   export NODE_MASTER=true
@@ -32,7 +32,7 @@ else
   export HTTP_ENABLE=false
 fi
 # Fetching the node type (If Data)
-if [[ $NODE_TYPE == *"DATA"* ]]
+if [[ $NODE_TYPE == "DATA" ]]
 then
   echo "[$TIME] $HOSTNAME is a ES Data node"
   export NODE_DATA=true
@@ -42,7 +42,7 @@ else
   export HTTP_ENABLE=false
 fi
 # Fetching the node type (If Client)
-if [[ $NODE_TYPE == *"CLIENT"* ]]
+if [[ $NODE_TYPE == "CLIENT" ]]
 then
   echo "[$TIME] $HOSTNAME is a ES Client node"
   export NODE_CLIENT=true
