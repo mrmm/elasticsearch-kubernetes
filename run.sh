@@ -65,10 +65,10 @@ export LOGS_PATH=${LOGS_PATH:-/logs}
 echo "[$(date)] Data Path $DATA_PATH"
 echo "[$(date)] Logs Path $LOGS_PATH"
 echo "[$(date)] Creating/Changing ownership of $LOGS_PATH and $DATA_PATH to elasticsearch user"
-mkdir -p $LOGS_PATH || true
-mkdir -p $DATA_PATH || true
-chown -R elasticsearch $LOGS_PATH
-chown -R elasticsearch $DATA_PATH
+sudo mkdir -p $LOGS_PATH
+sudo mkdir -p $DATA_PATH
+sudo chown -R elasticsearch $LOGS_PATH
+sudo chown -R elasticsearch $DATA_PATH
 
 # running ES
 echo "[$(date)] Running ES"
