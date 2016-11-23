@@ -1,5 +1,5 @@
-IMAGE_NAME=simonswine/elasticsearch-pet
-IMAGE_TAG=2.3.4
+IMAGE_NAME=quay.io/mrmm/elasticsearch-kubernetes
+IMAGE_TAG=2.4.1
 REPO=$(IMAGE_NAME):$(IMAGE_TAG)
 
 build:
@@ -7,4 +7,3 @@ build:
 
 push: build
 	docker push $(REPO)
-

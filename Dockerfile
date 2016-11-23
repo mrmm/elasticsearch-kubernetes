@@ -25,7 +25,7 @@ COPY pre-stop-hook.sh /pre-stop-hook.sh
 
 # Set environment variables defaults
 ENV ES_JAVA_OPTS "-Xms512m -Xmx512m -Djava.net.preferIPv4Stack=true"
-ENV CLUSTER_NAME clustername-not-set
+
 # Could be :
 # MASTER, CLIENT, DATA, MASTER_CLIENT_DATA
 ENV NODE_TYPE MASTER_CLIENT_DATA
@@ -38,7 +38,10 @@ ENV NUMBER_OF_REPLICAS 0
 
 # Defining the ES Discovery service
 ENV DISCOVERY_SERVICE elasticsearch-discovery
-ENV KUBERNETES_NAMESPACE default
+
+# Storage path configuration
+ENV DATA_PATH /data
+ENV LOGS_PATH /logs
 
 # Copy run script
 COPY run.sh /
