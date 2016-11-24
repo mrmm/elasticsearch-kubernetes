@@ -1,3 +1,5 @@
+[![Docker Repository on Quay](https://quay.io/repository/mrmm/elasticsearch-kubernetes/status "Docker Repository on Quay")](https://quay.io/repository/mrmm/elasticsearch-kubernetes)
+
 # Elasticsearch Kubernetes
 
 This is an Elasticsearch docker image meant to be used with PetSets.
@@ -5,7 +7,7 @@ This is an Elasticsearch docker image meant to be used with PetSets.
 This image is using Fabric8's great work around the [kubernetes plugin](https://github.com/fabric8io/elasticsearch-cloud-kubernetes) for elasticsearch and their [image](https://hub.docker.com/r/fabric8/elasticsearch-k8s/) as parent.
 
 ## Docker base image
-- This image is based on the [this](https://github.com/mrmm/docker-jre) JRE image.
+- This image is based on [this](https://github.com/mrmm/docker-jre) JRE image.
 
 ## Env variables
 - __CLUSTER_NAME__ : Elasticsearch Cluster name _(default : KUBERNETES_NAMESPACE)_
